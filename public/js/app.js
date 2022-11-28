@@ -1,6 +1,6 @@
 console.log("Clinet side js loaded");
 
-const url = "http://api.weatherstack.com/current?access_key=4e4a842d40f73f5944fe24f3cd98e828&query="
+const url = "/weather?location="
 
 
 const weatherForm = document.querySelector('form')
@@ -12,12 +12,13 @@ weatherForm.addEventListener('submit', (e) => {
     if(search.value){
         fetch(url + search.value).then((response) => {
             response.json().then((data, error) => {
+                console.log(data)
                 if(data.error){
                     console.log(data.error);
                 }
                 else {
-                    messageOne.textContent = data.current.temperature;
-                    console.log(data.current.temperature)
+                    messageOne.textContent = data.temperature + " celsius degrees in " + search.value;
+                    console.log(data.temperature)
                 }
             })
             })
